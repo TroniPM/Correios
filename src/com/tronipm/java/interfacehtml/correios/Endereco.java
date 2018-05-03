@@ -1,4 +1,4 @@
-package com.tronipm.java.interfacehtml;
+package com.tronipm.java.interfacehtml.correios;
 
 /**
  * 

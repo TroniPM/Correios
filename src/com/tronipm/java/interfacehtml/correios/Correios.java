@@ -4,7 +4,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import com.tronipm.java.interfacehtml.Browser;
-import com.tronipm.java.interfacehtml.Endereco;
 import com.tronipm.java.interfacehtml.HTMLObject;
 import com.tronipm.java.interfacehtml.Parameter;
 
