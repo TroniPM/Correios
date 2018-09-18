@@ -1,10 +1,10 @@
-package com.tronipm.java.interfacehtml.correios;
+package com.tronipm.correios.core;
 
 /**
  * 
  * @author Paulo Mateus
  * @email paulomatew@gmail.com
- * @date 09/04/2018
+ * @project Correios
  *
  */
 public class Endereco {

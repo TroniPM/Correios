@@ -1,14 +1,14 @@
-package com.tronipm.java.interfacehtml;
+package com.tronipm.correios.util;
 
 import java.util.Comparator;
 
-import com.tronipm.java.interfacehtml.HTMLObject;
+import com.tronipm.correios.html.HTMLObject;
 
 /**
  * 
  * @author Paulo Mateus
  * @email paulomatew@gmail.com
- * @date 09/04/2018
+ * @project Correios
  *
  */
 public class ComparatorAsc implements Comparator<HTMLObject> {

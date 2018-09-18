@@ -1,4 +1,4 @@
-package com.tronipm.java.interfacehtml;
+package com.tronipm.correios.html;
 
 import java.awt.Desktop;
 import java.io.BufferedReader;
@@ -19,6 +19,15 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import com.tronipm.correios.util.Util;
+
+/**
+ * 
+ * @author Paulo Mateus
+ * @email paulomatew@gmail.com
+ * @project Correios
+ *
+ */
 public class Browser {
 	private Charset charset = null;
 	private List<String> cookies;
@@ -26,17 +35,13 @@ public class Browser {
 	private String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11";
 	private boolean isHTTPS = false;
 
-	public static void main(String[] args) throws Exception {
-		Browser b = new Browser(false, StandardCharsets.UTF_8);
-		
-		b.example1();	
-	}
+	public boolean canLog = false;
 
 	public void example1() throws Exception {
 		// 1. setting up
 		String url1 = "http://example.com/wp/wp-login.php";//Login page
 		String url2 = "http://example.com/wp/wp-admin/edit.php";//logged page to test
-		Browser b = new Browser(false, StandardCharsets.UTF_8);
+		Browser b = new Browser(false, StandardCharsets.UTF_8, true);
 
 		// 2. Send a "GET" request, so you can extract the cookies/cache.
 		b.get(url1);
@@ -59,9 +64,10 @@ public class Browser {
 
 
 
-	public Browser(boolean isHTTPS, Charset charset) {
+	public Browser(boolean isHTTPS, Charset charset, boolean canLog) {
 		this.isHTTPS = isHTTPS;
 		this.charset = charset;
+		this.canLog = canLog;
 
 		// make sure cookies is turn on
 		CookieHandler.setDefault(new CookieManager());		
@@ -71,21 +77,22 @@ public class Browser {
 	private void getHeader() {
 		Map<String, List<String>> map = ((conn instanceof HttpURLConnection)?(HttpURLConnection)conn:(HttpsURLConnection)conn).getHeaderFields();
 
+		if(canLog)
+			System.out.println("Printing Response Header...\n");
 
-		System.out.println("Printing Response Header...\n");
-
-		for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-			System.out.println("Key : " + entry.getKey() 
-			+ " ,Value : " + entry.getValue());
-		}
+		if(canLog)
+			for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+				System.out.println("Key : " + entry.getKey() + " ,Value : " + entry.getValue());
+			}
 
 		String server = ((conn instanceof HttpURLConnection)?(HttpURLConnection)conn:(HttpsURLConnection)conn).getHeaderField("Server");
 
-		if (server == null) {
-			System.out.println("Key 'Server' is not found!");
-		} else {
-			System.out.println("--> Server: " + server + " <--");
-		}
+		if(canLog)
+			if (server == null) {
+				System.out.println("Key 'Server' is not found!");
+			} else {
+				System.out.println("--> Server: " + server + " <--");
+			}
 	}
 
 	public String post(String url, Parameter[] params) {
@@ -153,9 +160,11 @@ public class Browser {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("\nSending 'POST' request to URL : " + url);
-		System.out.println("Post parameters : " + postParams);
-		System.out.println("Response Code : " + responseCode);
+		if(canLog) {
+			System.out.println("\nSending 'POST' request to URL : " + url);
+			System.out.println("Post parameters : " + postParams);
+			System.out.println("Response Code : " + responseCode);
+		}
 
 		//getHeader();
 
@@ -222,9 +231,10 @@ public class Browser {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("\nSending 'GET' request to URL : " + url);
-		System.out.println("Response Code : " + responseCode);
-
+		if(canLog) {
+			System.out.println("\nSending 'GET' request to URL : " + url);
+			System.out.println("Response Code : " + responseCode);
+		}
 		//		getHeader();
 
 		BufferedReader in = null;

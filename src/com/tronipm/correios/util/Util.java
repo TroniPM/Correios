@@ -1,4 +1,4 @@
-package com.tronipm.java.interfacehtml;
+package com.tronipm.correios.util;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -8,7 +8,7 @@ import java.io.IOException;
  * 
  * @author Paulo Mateus
  * @email paulomatew@gmail.com
- * @date 09/04/2018
+ * @project Correios
  *
  */
 public class Util {

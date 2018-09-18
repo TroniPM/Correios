@@ -1,4 +1,4 @@
-package com.tronipm.java.interfacehtml;
+package com.tronipm.correios.html;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,11 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import com.tronipm.correios.util.ComparatorAsc;
+
 /**
  * 
  * @author Paulo Mateus
  * @email paulomatew@gmail.com
- * @date 09/04/2018
+ * @project Correios
  *
  */
 public class HTMLObject {
@@ -247,35 +249,35 @@ public class HTMLObject {
 		return false;
 	}
 
-	protected int getLine_start() {
+	public int getLine_start() {
 		return line_start;
 	}
 
-	protected void setLine_start(int line_start) {
+	public void setLine_start(int line_start) {
 		this.line_start = line_start;
 	}
 
-	protected int getLine_end() {
+	public int getLine_end() {
 		return line_end;
 	}
 
-	protected void setLine_end(int line_end) {
+	public void setLine_end(int line_end) {
 		this.line_end = line_end;
 	}
 
-	protected String getStr_start() {
+	public String getStr_start() {
 		return str_start;
 	}
 
-	protected void setStr_start(String str_start) {
+	public void setStr_start(String str_start) {
 		this.str_start = str_start;
 	}
 
-	protected String getStr_end() {
+	public String getStr_end() {
 		return str_end;
 	}
 
-	protected void setStr_end(String str_end) {
+	public void setStr_end(String str_end) {
 		this.str_end = str_end;
 	}
 }

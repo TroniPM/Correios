@@ -1,16 +1,16 @@
-package com.tronipm.java.interfacehtml;
+package com.tronipm.correios.html;
 
 /**
  * 
  * @author Paulo Mateus
  * @email paulomatew@gmail.com
- * @date 09/04/2018
+ * @project Correios
  *
  */
 public class Parameter {
 	private String id;
 	private String value;
-	
+
 	public String getId() {
 		return id;
 	}

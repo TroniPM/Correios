@@ -1,17 +1,17 @@
-package com.tronipm.java.interfacehtml.correios;
+package com.tronipm.correios.core;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-import com.tronipm.java.interfacehtml.Browser;
-import com.tronipm.java.interfacehtml.HTMLObject;
-import com.tronipm.java.interfacehtml.Parameter;
+import com.tronipm.correios.html.Browser;
+import com.tronipm.correios.html.HTMLObject;
+import com.tronipm.correios.html.Parameter;
 
 /**
  * 
  * @author Paulo Mateus
  * @email paulomatew@gmail.com
- * @date 09/04/2018
+ * @project Correios
  *
  */
 public class Correios {
@@ -20,31 +20,23 @@ public class Correios {
 	private static final String diferenciador = "tmptabela";
 	private static final String placeholder = "NULL";
 	private static final String parametro_CEP = "relaxation", parametro_TIPO = "tipoCEP";
+	private static final String url = "http://www.buscacep.correios.com.br/sistemas/buscacep/resultadoBuscaCepEndereco.cfm";
 
 	public ArrayList<Endereco> getEnderecos() {
 		return enderecos;
 	}
 
-	//	public void setEnderecos(ArrayList<Endereco> enderecos) {
-	//		this.enderecos = enderecos;
-	//	}
-
 	public boolean isValid() {
 		return isValid;
 	}
 
-	//	public void setValid(boolean isValid) {
-	//		this.isValid = isValid;
-	//	}
+	public Correios(String cep, boolean canLog) {
+		Browser b = new Browser(false, StandardCharsets.UTF_8, canLog);
 
-	public Correios(String cep) {
-		String url1 = "http://www.buscacep.correios.com.br/sistemas/buscacep/resultadoBuscaCepEndereco.cfm";
-		Browser b = new Browser(false, StandardCharsets.UTF_8);
-
-		b.get(url1);
+		b.get(url);
 
 		Parameter[] p = new Parameter[] {new Parameter(parametro_CEP, cep), new Parameter(parametro_TIPO, "ALL")};
-		String a1 = b.post(url1, p);
+		String a1 = b.post(url, p);
 
 		//salvando pagina para conferencia
 		//		String path3 = "C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\cccccc.html";
@@ -90,19 +82,6 @@ public class Correios {
 		} else {
 			isValid = false;
 			enderecos = null;
-		}
-	}
-
-	public static void main(String[] args) {
-		Correios c = new Correios("25 de marco");
-		//Correios c = new Correios("55295555");
-
-		if(c.isValid()) {
-			ArrayList<Endereco> end = c.getEnderecos();
-			System.out.println("\n----ENCONTRADOS (" + end.size() + ")----");
-			for(Endereco in : end) {
-				System.out.println(in);
-			}
 		}
 	}
 }
